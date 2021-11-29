@@ -8,7 +8,7 @@ html {
     margin: 0;
     padding: 0;
     box-sizing: inherit;
-    font-family: 'montserrat';
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -21,8 +21,24 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
+$color-red: #fe6261;
+$color-black: #333333;
+$color-white: #efefef;
+
 .app {
-    margin-top: 2rem;
     display: grid;
     justify-items: center;
+}
+
+.btn-submit {
+    background-color: $color-red;
+    border: none;
+    padding: 10px;
+    font-size: 2em;
+    color: $color-white;
+    width: 50%;
+    font-weight: bold;
+}
+.btn-submit:hover {
+    color: $color-black;
 }
