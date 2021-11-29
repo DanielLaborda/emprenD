@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
 import Login from "./login/login";
-
+import ComparteIdea from './comparteIdea/comparteIdea';
 
 export default class App extends Component {
   constructor(props) {
@@ -21,7 +20,7 @@ export default class App extends Component {
   }
   
   componentDidMount() {
-// cargamos los usuarios para validarlos
+    // cargamos los usuarios para validarlos
     this.setState({
       users: [
         {
@@ -194,6 +193,18 @@ export default class App extends Component {
     var newArray = this.state.coments.slice();    
     newArray.push(newComent);   
     this.setState({coments:newArray});
+
+    // axios({
+    //   method: 'post',
+    //   url: 'http://localhost:8000/coments',
+    //   data: newComent
+    // }).then(response =>{
+    //   this.setState({
+    //     coments: response.data
+    //   });
+    // }).catch(error => {
+    //   console.log(error);
+    // });
     
   }
   render() {
@@ -212,7 +223,15 @@ export default class App extends Component {
           :
               
             <div className='comparteIdea'>
-              
+              <ComparteIdea 
+                className='comparteIdea__content' 
+                handleShareComent={this.handleShareComent}
+                handleLogout={this.handleLogout}
+                coments={this.state.coments}
+                nombreUsuario={this.state.nombreUsuario}
+                idUsuario={this.state.idUsuario}
+                users={this.state.users}
+              />
             </div>
         }
       </div>
