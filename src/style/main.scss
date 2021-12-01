@@ -43,6 +43,7 @@ $color-white: #efefef;
     color: $color-black;
 }
 
-@import './login/login';
+@import './login';
+@import './registrar';
 @import './navbar';
 @import './comparteIdea';

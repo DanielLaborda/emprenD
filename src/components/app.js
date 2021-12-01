@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Login from "./login/login";
 import ComparteIdea from './comparteIdea/comparteIdea';
+import Registrar from './registrar/registrar';
 
 export default class App extends Component {
   constructor(props) {
@@ -8,6 +9,7 @@ export default class App extends Component {
 
     this.state = {
         show: 'Login',
+        showRegister: 'login',
         users: [],
         coments: [],
         idUsuario: '',
@@ -17,6 +19,8 @@ export default class App extends Component {
     this.handleUnsuccessfulLogin = this.handleUnsuccessfulLogin.bind(this);
     this.handleShareComent = this.handleShareComent.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
+    this.handleRegistedUser = this.handleRegistedUser.bind(this);
   }
   
   componentDidMount() {
@@ -189,6 +193,36 @@ export default class App extends Component {
   handleLogout() {
     this.setState({ show: 'Login' });
   }
+  handleRegister() {
+    if  (this.state.showRegister === 'registrar') {
+      this.setState({ showRegister: 'login' });
+    } else {
+      this.setState({ showRegister: 'registrar' });
+    }
+  }
+  handleRegistedUser(email, nombre, contraseña) {
+    //crear usuario registrado
+    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    let esValido = true;
+    if (!pattern.test(email)) {
+      alert("Por favor ingresa un email valido.");
+      esValido = false;
+    } else {
+      for (var i = 0; i < this.state.users.length; i++) {
+        if(email === this.state.users[i].email ){
+          alert("Existe ya un usuario con ese email");
+          esValido = false;
+          break;
+        }
+      }
+    }
+
+    if(esValido == true){
+      alert(nombre + " : " + email + " : " + contraseña);
+      // se confirma todo okk
+    }
+  }
+
   handleShareComent(newComent){
     var newArray = this.state.coments.slice();    
     newArray.push(newComent);   
@@ -210,15 +244,24 @@ export default class App extends Component {
   render() {
     return (
       <div className='app'>
-        
         {(this.state.show === 'Login') ?
-            <div className='login'>
-              <Login 
-                className='login__content' 
-                handleSuccessfulLogin={this.handleSuccessfulLogin}
-                handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
-                />
-            </div>
+            (this.state.showRegister === 'registrar') ?
+              <div className='registrar'>
+                <Registrar 
+                  className='registrar__content' 
+                  handleRegistedUser={this.handleRegistedUser}
+                  handleRegister={this.handleRegister}
+                  />
+              </div>
+            :
+              <div className='login'>
+                <Login 
+                  className='login__content' 
+                  handleSuccessfulLogin={this.handleSuccessfulLogin}
+                  handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
+                  handleRegister={this.handleRegister}
+                  />
+              </div>
             
           :
               

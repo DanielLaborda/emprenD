@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
-import LoginForm from './loginForm';
 import logo from '../../../static/images/LOGO.png';
+import RegistrarForm from './registrarForm';
 
-export default class Login extends Component {
+export default class Registrar extends Component {
     constructor(props) {
         super(props);
     
-        this.handleSuccessfulLogin = this.handleSuccessfulLogin.bind(this);
-        this.handleUnsuccessfulLogin = this.handleUnsuccessfulLogin.bind(this);
         this.handleRegister = this.handleRegister.bind(this);
-    }
-    handleSuccessfulLogin(user, password){
-        this.props.handleSuccessfulLogin(user, password);
-    }
-    handleUnsuccessfulLogin(){
-      this.props.handleUnsuccessfulLogin();
+        this.handleRegistedUser = this.handleRegistedUser.bind(this);
     }
     handleRegister()  {
         this.props.handleRegister();
     }
+    handleRegistedUser(email, nombre, contraseña) {
+        this.props.handleRegistedUser(email, nombre, contraseña);
+    }
+
     render() {
         const { className } = this.props;
         return (
@@ -28,13 +25,11 @@ export default class Login extends Component {
                     <h1>emprenD</h1>
                 </div>
                 
-                <LoginForm 
+                <RegistrarForm 
                   className={`${className}__form`}
-                  handleSuccessfulLogin={this.handleSuccessfulLogin}
-                  handleUnsuccessfulLogin={this.handleUnsuccessfulLogin}
+                  handleRegistedUser={this.handleRegistedUser}
                 />
-                <a onClick={() => this.handleRegister()} className={`btn__register`}>Registrarse</a> 
-
+                <a onClick={() => this.handleRegister()} className={`btn__register`}>Ya estoy registrado</a> 
             </div>
         );
     }
