@@ -176,3 +176,10 @@ input[type="checkbox"]{
         }
     }
 }
+@media (max-width: 250px) {
+    .navbar__content {
+        &__nomUser{            
+            font-size: 1.4rem;
+        }
+    }
+}

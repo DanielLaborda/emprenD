@@ -49,3 +49,31 @@
         }
     }
 }
+
+// Media query
+@media (max-width: 568px) {
+    .login{
+        height: 100vh;
+        &__content{
+            &__titulo {
+                font-size: 0.8rem;
+                display: block;
+                text-align: center;
+            }
+            &__form__input {
+                width: auto;
+            }
+        }
+    }
+    
+}
+@media (max-width: 368px) {
+    .login{
+        &__content{
+            &__form__input {
+                font-size: 1.4rem;
+            }
+        }
+    }
+    
+}

@@ -50,3 +50,17 @@
     }
 
 }
+
+
+// Media query
+@media (max-width: 500px) {
+    .registrar__content{
+        &__titulo {
+            display: block;
+            text-align: center;
+        }
+        &__form__input {
+            width: auto;
+        }
+    }
+}
