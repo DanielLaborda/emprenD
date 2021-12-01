@@ -12,8 +12,8 @@ export default class Registrar extends Component {
     handleRegister()  {
         this.props.handleRegister();
     }
-    handleRegistedUser(email, nombre, contraseña) {
-        this.props.handleRegistedUser(email, nombre, contraseña);
+    handleRegistedUser(email, nombre, contraseña, contraseñaValidacion) {
+        this.props.handleRegistedUser(email, nombre, contraseña, contraseñaValidacion);
     }
 
     render() {

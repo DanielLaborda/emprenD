@@ -14,7 +14,8 @@ export default class RegistrarForm extends Component {
           redirect: false,
           name: "",
           email: "",
-          password: ""
+          password: "",
+          passwordValidacion:""
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -26,7 +27,16 @@ export default class RegistrarForm extends Component {
         });
     }
     handleRegistedUser(event) {
-        this.props.handleRegistedUser(this.state.email, this.state.name, this.state.password);
+        if ( this.state.password === this.state.passwordValidacion) {
+            if( this.state.password.length == 8 && this.state.passwordValidacion.length == 8 ) {
+                this.props.handleRegistedUser(this.state.email, this.state.name, this.state.password, this.state.passwordValidacion);
+            } else {
+                alert('contraseña no okk');
+            }
+        }else {
+            alert('Las contraseñas deben coincidir')
+        }
+        
         event.preventDefault();
     }
     render() {
@@ -62,6 +72,16 @@ export default class RegistrarForm extends Component {
                     type="password"
                     name="password"
                     value={this.state.password}
+                    required
+                    onChange={this.handleChange}
+                    />                    
+                </div>
+                <div className={`${className}__input`}>
+                    <label>Contraseña Validación</label>
+                    <input
+                    type="password"
+                    name="passwordValidacion"
+                    value={this.state.passwordValidacion}
                     required
                     onChange={this.handleChange}
                     />                    
